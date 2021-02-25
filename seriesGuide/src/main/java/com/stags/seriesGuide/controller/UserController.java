@@ -14,12 +14,12 @@ public class UserController {
     @Autowired
     private UserService service;
 
-    @PostMapping("/user")
+    @PostMapping("/users")
     public User addUser(@RequestBody UserRequest user){
         return service.saveUser(user);
     }
 
-    @GetMapping("/user/{email}")
+    @GetMapping("/users/email/{email}")
     public User getUserByEmail(@PathVariable String email){
         return service.getUserByEmail(email);
     }

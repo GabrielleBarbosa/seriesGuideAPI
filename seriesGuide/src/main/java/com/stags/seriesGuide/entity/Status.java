@@ -11,13 +11,13 @@ public class Status {
     @Column(name = "id", unique = true)
     private long id;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private String status;
 
-    @Column(name = "userId")
+    @Column(name = "userId", nullable = false)
     private long userId;
 
-    @Column(name = "seriesId")
+    @Column(name = "seriesId", nullable = false)
     private long seriesId;
 
     public long getId() {

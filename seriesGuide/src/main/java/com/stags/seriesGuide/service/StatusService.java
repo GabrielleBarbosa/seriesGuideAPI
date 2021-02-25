@@ -14,10 +14,6 @@ public class StatusService {
     @Autowired
     private StatusRepository repository;
 
-    public List<Status> getStatus(){
-        return repository.findAll();
-    }
-
     public List<Status> getStatusByUserId(long userId){
         return repository.findByUserId(userId);
     }
@@ -28,5 +24,17 @@ public class StatusService {
                 .setSeriesId(status.getSeriesId())
                 .setUserId(status.getUserId());
         return repository.save(s);
+    }
+
+    public Status updateStatus(StatusRequest status){
+        if(repository.existsById(status.getId())) {
+            Status s = new Status().setId(status.getId())
+                    .setStatus(status.getStatus())
+                    .setSeriesId(status.getSeriesId())
+                    .setUserId(status.getUserId());
+
+            return repository.save(s);
+        }
+        return null;
     }
 }
