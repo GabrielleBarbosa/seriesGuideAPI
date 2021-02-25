@@ -16,7 +16,7 @@ public class SeriesController {
     @Autowired
     private SeriesService service;
 
-    @GetMapping("/series")
+   /* @GetMapping("/series")
     public List<Series> getSeries(){
         return service.getSeries();
     }
@@ -29,5 +29,5 @@ public class SeriesController {
     @PostMapping("/series")
     public Series saveSeries(@RequestBody SeriesRequest series){
         return service.saveSeries(series);
-    }
+    }*/
 }

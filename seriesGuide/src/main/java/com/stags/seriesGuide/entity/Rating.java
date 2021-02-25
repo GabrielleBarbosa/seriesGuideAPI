@@ -11,16 +11,16 @@ public class Rating {
     @Column(name = "id", unique = true)
     private long id;
 
-    @Column(name = "score")
+    @Column(name = "score", nullable = false)
     private int score;
 
-    @Column(name = "seriesId")
+    @Column(name = "seriesId", nullable = false)
     private long seriesId;
 
-    @Column(name = "comment")
+    @Column(name = "comment", nullable = false)
     private String comment;
 
-    @Column(name = "userId")
+    @Column(name = "userId", nullable = false)
     private long userId;
 
     public long getId() {

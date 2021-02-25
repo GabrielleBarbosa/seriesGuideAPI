@@ -11,13 +11,13 @@ public class User {
     @Column(name = "id", unique = true)
     private long id;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
-    @Column(name = "password")
+    @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     public long getId() {

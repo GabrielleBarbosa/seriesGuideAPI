@@ -14,12 +14,7 @@ public class StatusController {
     @Autowired
     private StatusService service;
 
-    @GetMapping("/status")
-    public List<Status> getStatus(){
-        return service.getStatus();
-    }
-
-    @GetMapping("/status/{userId}")
+    @GetMapping("/status/userId/{userId}")
     public List<Status> getStatusByUserId(@PathVariable long userId){
         return service.getStatusByUserId(userId);
     }
@@ -28,4 +23,12 @@ public class StatusController {
     public Status saveStatus(@RequestBody StatusRequest status){
         return service.saveStatus(status);
     }
+
+    @PutMapping("/status")
+    public Status updateStatus(@RequestBody StatusRequest status){
+        Status result = service.updateStatus(status);
+        return result;
+
+    }
+
 }

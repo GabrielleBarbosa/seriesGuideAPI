@@ -31,4 +31,19 @@ public class RatingService {
         return repository.save(r);
     }
 
+    public List<Rating> getRatingsBySeriesId(long seriesId) { return repository.findBySeriesId(seriesId); }
+
+    public Rating updateRating(RatingRequest rating){
+        if(repository.existsById(rating.getId())) {
+            Rating r = new Rating().setId(rating.getId())
+                    .setComment(rating.getComment())
+                    .setScore(rating.getScore())
+                    .setSeriesId(rating.getSeriesId())
+                    .setUserId(rating.getUserId());
+            return repository.save(r);
+        }else{
+            return null;
+        }
+    }
+
 }

@@ -14,18 +14,23 @@ public class RatingController {
     @Autowired
     private RatingService service;
 
-    @GetMapping("/ratings")
-    public List<Rating> getRatings(){
-        return service.getRatings();
-    }
-
-    @GetMapping("/ratings/{userId}")
+    @GetMapping("/ratings/userId/{userId}")
     public List<Rating> getRatingsByUserId(@PathVariable long userId){
         return service.getRatingsByUserId(userId);
     }
 
+    @GetMapping("/ratings/seriesId/{seriesId}")
+    public List<Rating> getRatingsBySeriesId(@PathVariable long seriesId){
+        return service.getRatingsBySeriesId(seriesId);
+    }
+
     @PostMapping("/ratings")
     public Rating saveRating(@RequestBody RatingRequest rating){
+        return service.saveRating(rating);
+    }
+
+    @PutMapping("/ratings")
+    public Rating updateRating(@RequestBody RatingRequest rating){
         return service.saveRating(rating);
     }
 }

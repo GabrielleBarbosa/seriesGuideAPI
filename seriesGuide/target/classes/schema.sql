@@ -22,14 +22,18 @@ CREATE TABLE rating (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     score INT NOT NULL,
     comment VARCHAR(250) NOT NULL,
-    CONSTRAINT seriesId FOREIGN KEY (series)
-    CONSTRAINT userId FOREIGN KEY (users)
+    seriesId INT,
+    FOREIGN KEY (seriesId) references series,
+    userId INT,
+    FOREIGN KEY (userId) references users
 );
 
 CREATE TABLE status (
     id INT AUTO_INCREMENT  PRIMARY KEY,
     status VARCHAR(250) NOT NULL,
-    CONSTRAINT seriesId FOREIGN KEY (series)
-    CONSTRAINT userId FOREIGN KEY (users)
+    seriesId INT,
+    FOREIGN KEY (seriesId) references series,
+    userId INT,
+    FOREIGN KEY (userId) references users
 );
 
