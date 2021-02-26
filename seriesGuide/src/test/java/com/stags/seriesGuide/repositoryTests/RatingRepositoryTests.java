@@ -59,10 +59,10 @@ public class RatingRepositoryTests {
         repository.save(mockRating);
 
         mockRating.setScore(10);
-        mockRating.setId(1);
+
         repository.save(mockRating);
 
-        Integer countStatus = repository.findAll().size();
+        int countStatus = repository.findAll().size();
         assertEquals(1, countStatus);
 
         Rating result = repository.findAll().get(0);

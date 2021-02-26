@@ -41,8 +41,8 @@ public class TmdbService {
 
         List<Series> results = new ArrayList<>();
 
-        for (SeriesSearchResult stv : result.getResults()) {
-            Series series = getSeriesById(stv.getId());
+        for (SeriesSearchResult ssr : result.getResults()) {
+            Series series = getSeriesById(ssr.getId());
             results.add(series);
         }
 
