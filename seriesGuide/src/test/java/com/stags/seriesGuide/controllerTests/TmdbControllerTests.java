@@ -2,9 +2,7 @@ package com.stags.seriesGuide.controllerTests;
 
 import com.stags.seriesGuide.controller.TmdbController;
 import com.stags.seriesGuide.service.TmdbService;
-import com.stags.seriesGuide.tmdb.Genre;
-import com.stags.seriesGuide.tmdb.Series;
-import com.stags.seriesGuide.tmdb.SeriesSearch;
+import com.stags.seriesGuide.tmdb.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +42,10 @@ public class TmdbControllerTests {
             1000000,
             "Test");
 
-    private SeriesSearch mockSeriesSearch = new SeriesSearch();
+    private SeriesSearch mockSeriesSearch = new SeriesSearch( Arrays.asList(new SeriesSearchResult(1)), 1);
 
     @Test
-    public void getSeriesById() throws Exception{
+    public void shouldReturnSeriesById() throws Exception{
         when(service.getSeriesById(any(Long.class))).thenReturn(mockSeries);
         this.mockMvc.perform(get("/series/1"))
                 .andExpect(status().isOk())
@@ -55,13 +53,19 @@ public class TmdbControllerTests {
     }
 
     @Test
-    public void getPopularSeries(){
-
+    public void shouldReturnPopularSeries() throws Exception{
+        when(service.getPopularSeries(any(int.class))).thenReturn(new SeriesArray(1, Arrays.asList(mockSeries)));
+        this.mockMvc.perform(get("/series/popular/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(mockSeries.getPoster_path())));
     }
 
     @Test
-    public void getSeriesByQuery(){
-
+    public void getSeriesByQuery() throws Exception{
+        when(service.searchSeriesByQuery(any(String.class), any(int.class))).thenReturn(new SeriesArray(1, Arrays.asList(mockSeries)));
+        this.mockMvc.perform(get("/series/search?query=jhbd&page=1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(mockSeries.getPoster_path())));
     }
 
 }

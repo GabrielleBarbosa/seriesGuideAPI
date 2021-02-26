@@ -49,13 +49,14 @@ public class StatusRepositoryTests {
         repository.save(mockStatus);
 
         mockStatus.setStatus("assistindo");
-        mockStatus.setId(1);
-        repository.save(mockStatus);
 
-        Integer countStatus = repository.findAll().size();
-        assertEquals(1, countStatus);
+        repository.save(mockStatus);
 
         Status result = repository.findAll().get(0);
         assertEquals(mockStatus, result);
+
+        int countStatus = repository.findAll().size();
+        assertEquals(1, countStatus);
+
     }
 }

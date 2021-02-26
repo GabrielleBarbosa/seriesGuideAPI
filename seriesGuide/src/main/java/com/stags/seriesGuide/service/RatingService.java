@@ -35,11 +35,10 @@ public class RatingService {
 
     public Rating updateRating(RatingRequest rating){
         if(repository.existsById(rating.getId())) {
-            Rating r = new Rating().setId(rating.getId())
-                    .setComment(rating.getComment())
-                    .setScore(rating.getScore())
-                    .setSeriesId(rating.getSeriesId())
-                    .setUserId(rating.getUserId());
+            Rating r = repository.findById(rating.getId()).orElse(null);
+            r.setComment(rating.getComment())
+            .setScore(rating.getScore());
+
             return repository.save(r);
         }else{
             return null;

@@ -14,6 +14,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
@@ -39,5 +40,30 @@ public class RatingServiceTests {
         when(repository.findBySeriesId(any(Long.class))).thenReturn(Arrays.asList(new Rating()));
         List<Rating> response = service.getRatingsBySeriesId(1);
         assertEquals(1, response.size());
+    }
+
+    @Test
+    public void shouldReturnRatingByUserId(){
+        when(repository.findByUserId(any(Long.class))).thenReturn(Arrays.asList(new Rating()));
+        List<Rating> response = service.getRatingsByUserId(1);
+        assertEquals(1, response.size());
+    }
+
+    @Test
+    public void shouldReturnUpdatedRating(){
+        Rating rating = new Rating();
+        when(repository.existsById(any(Long.class))).thenReturn(true);
+        when(repository.findById(any(Long.class))).thenReturn(java.util.Optional.of(rating));
+        when(repository.save(any(Rating.class))).thenReturn(rating.setComment("teste"));
+        Rating response = service.updateRating(new RatingRequest(1, 1, 1, "teste", 1));
+        assertEquals("teste", response.getComment());
+    }
+
+    @Test
+    public void updateShouldReturnNull(){
+        Rating rating = new Rating();
+        when(repository.existsById(any(Long.class))).thenReturn(false);
+        Rating response = service.updateRating(new RatingRequest(1, 1, 1, "teste", 1));
+        assertNull(response);
     }
 }

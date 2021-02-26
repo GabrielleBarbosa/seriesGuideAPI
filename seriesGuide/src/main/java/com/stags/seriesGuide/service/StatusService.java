@@ -28,10 +28,8 @@ public class StatusService {
 
     public Status updateStatus(StatusRequest status){
         if(repository.existsById(status.getId())) {
-            Status s = new Status().setId(status.getId())
-                    .setStatus(status.getStatus())
-                    .setSeriesId(status.getSeriesId())
-                    .setUserId(status.getUserId());
+            Status s = repository.findById(status.getId()).orElse(null);
+            s.setStatus(status.getStatus());
 
             return repository.save(s);
         }
