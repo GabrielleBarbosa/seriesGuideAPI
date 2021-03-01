@@ -20,6 +20,8 @@ public class Series {
     private int vote_count;
     private String original_name;
 
+    public Series(){};
+
     public Series(long id, Date first_air_date, List<Genre> genres, String name, int number_of_seasons, String overview, String poster_path, String status, float vote_average, int vote_count, String original_name) {
         this.id = id;
         this.first_air_date = first_air_date;

@@ -6,6 +6,8 @@ public class SeriesArray {
     private int total_pages;
     private List<Series> results;
 
+    public SeriesArray(){};
+
     public SeriesArray(int total_pages, List<Series> results) {
         this.total_pages = total_pages;
         this.results = results;
