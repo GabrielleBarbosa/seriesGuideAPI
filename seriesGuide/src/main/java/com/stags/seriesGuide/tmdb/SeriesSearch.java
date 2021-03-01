@@ -9,6 +9,8 @@ public class SeriesSearch {
     private List<SeriesSearchResult> results;
     private int total_pages;
 
+    public SeriesSearch(){};
+
     public SeriesSearch(List<SeriesSearchResult> results, int total_pages) {
         this.results = results;
         this.total_pages = total_pages;

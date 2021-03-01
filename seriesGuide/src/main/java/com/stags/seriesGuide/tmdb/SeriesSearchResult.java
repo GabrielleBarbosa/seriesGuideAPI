@@ -8,6 +8,8 @@ import java.util.Date;
 public class SeriesSearchResult {
     private long id;
 
+    public SeriesSearchResult(){};
+
     public SeriesSearchResult(long id) {
         this.id = id;
     }
