@@ -45,4 +45,8 @@ public class RatingService {
         }
     }
 
+    public Rating getRatingById(long id){
+        return repository.findById(id).orElse(null);
+    }
+
 }

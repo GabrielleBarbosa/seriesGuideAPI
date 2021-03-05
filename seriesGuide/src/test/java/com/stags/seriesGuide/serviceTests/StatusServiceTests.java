@@ -64,4 +64,13 @@ public class StatusServiceTests {
         Status response = service.updateStatus(new StatusRequest(1,"",1,1));
         assertNull(response);
     }
+
+    @Test
+    public void shouldReturnStatusById(){
+        Status status = new Status().setUserId(1).setStatus("bla");
+        when(repository.findById(any(Long.class))).thenReturn(java.util.Optional.ofNullable(status));
+        Status response = service.getStatusById(1);
+        assertNotNull(response);
+        assertEquals(status.getStatus(), response.getStatus());
+    }
 }

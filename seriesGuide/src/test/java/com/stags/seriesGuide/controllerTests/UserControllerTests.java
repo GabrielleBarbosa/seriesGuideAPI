@@ -54,4 +54,12 @@ public class UserControllerTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void shouldGetUserById() throws Exception{
+        when(service.getUserById(any(Long.class))).thenReturn(mockUser);
+        this.mockMvc.perform(get("/users/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(mockUser.getName())));
+    }
 }

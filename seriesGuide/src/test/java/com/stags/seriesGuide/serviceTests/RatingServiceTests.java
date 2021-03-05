@@ -66,4 +66,11 @@ public class RatingServiceTests {
         Rating response = service.updateRating(new RatingRequest(1, 1, 1, "teste", 1));
         assertNull(response);
     }
+
+    @Test
+    public void shouldReturnRatingById(){
+        when(repository.findById(any(Long.class))).thenReturn(java.util.Optional.ofNullable(new Rating().setComment("oiii")));
+        Rating response = service.getRatingById(1);
+        assertEquals("oiii", response.getComment());
+    }
 }
