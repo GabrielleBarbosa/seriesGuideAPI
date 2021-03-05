@@ -35,4 +35,8 @@ public class StatusService {
         }
         return null;
     }
+
+    public Status getStatusById(long id){
+        return repository.findById(id).orElse(null);
+    }
 }

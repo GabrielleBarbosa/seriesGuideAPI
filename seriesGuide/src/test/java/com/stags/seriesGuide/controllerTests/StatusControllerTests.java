@@ -18,6 +18,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -71,5 +72,13 @@ public class StatusControllerTests {
                 .content((new ObjectMapper()).writeValueAsString(mockStatus))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    public void shouldGetStatusById()throws Exception {
+        when(service.getStatusById(any(Long.class))).thenReturn(mockStatus);
+        this.mockMvc.perform(get("/status/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(mockStatus.getStatus())));
     }
 }

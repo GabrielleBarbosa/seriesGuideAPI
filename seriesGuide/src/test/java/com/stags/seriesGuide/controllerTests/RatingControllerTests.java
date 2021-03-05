@@ -85,4 +85,12 @@ public class RatingControllerTests {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    public void getRatingById() throws Exception {
+        when(service.getRatingById(any(Long.class))).thenReturn(mockRating);
+        this.mockMvc.perform(get("/ratings/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString(mockRating.getComment())));
+    }
 }

@@ -39,4 +39,12 @@ public class UserServiceTests {
         User response = service.getUserByEmail(email);
         assertEquals(email, response.getEmail());
     }
+
+    @Test
+    public void shouldReturnUserById(){
+        User user = new User().setName("teste");
+        when(repository.findById(any(Long.class))).thenReturn(java.util.Optional.ofNullable(user));
+        User response = service.getUserById(1);
+        assertEquals(user.getName(), response.getName());
+    }
 }

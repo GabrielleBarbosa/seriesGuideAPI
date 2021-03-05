@@ -23,8 +23,8 @@ public class UserService {
         return repository.findByEmail(email);
     }
 
-    public List<User> getUsers(){
-        return repository.findAll();
+    public User getUserById(long id){
+        return repository.findById(id).orElse(null);
     }
 
 }
